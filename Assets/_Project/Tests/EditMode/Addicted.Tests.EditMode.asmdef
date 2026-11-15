@@ -4,6 +4,7 @@
     "references": [
         "Addicted.Core",
         "Addicted.Content",
+        "Addicted.Gameplay",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

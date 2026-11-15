@@ -10,16 +10,10 @@ namespace Addicted.Content
     {
         [SerializeField] private string displayName;
         [SerializeField, TextArea] private string description;
-
-        [Header("Movimento")]
-        [SerializeField, Min(0f)] private float moveSpeed = 6f;
-        [SerializeField, Min(0f)] private float dashDistance = 3f;
-        [SerializeField, Min(0f)] private float dashCooldown = 0.8f;
+        [SerializeField] private MovementSettings movement = MovementSettings.Default;
 
         public string DisplayName => displayName;
         public string Description => description;
-        public float MoveSpeed => moveSpeed;
-        public float DashDistance => dashDistance;
-        public float DashCooldown => dashCooldown;
+        public MovementSettings Movement => movement;
     }
 }

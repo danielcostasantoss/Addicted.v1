@@ -30,12 +30,27 @@ Cena de testes: `Assets/_Project/Scenes/Sandbox.unity`.
 Assets/_Project/
 ├── Core/                 # Bootstrap e serviços comuns (Addicted.Core)
 ├── Gameplay/             # Addicted.Gameplay
-│   └── Movement/         # Controlador 2D comum a todos os personagens (a criar)
+│   └── Movement/         # Controlador de plataforma 2D comum a todos os personagens
 ├── Content/              # ScriptableObjects: vícios, habilidades, itens (Addicted.Content)
+├── Art/Placeholder/      # Sprites provisórios para protótipo
 ├── Scenes/               # Sandbox.unity e cenas do jogo
 ├── Settings/             # URP (2D Renderer), Volume Profile, Input Actions
-└── Tests/EditMode/       # Testes NUnit (Addicted.Tests.EditMode)
+└── Tests/
+    ├── EditMode/         # Testes de lógica, sem física (Addicted.Tests.EditMode)
+    └── PlayMode/         # Testes com física 2D real (Addicted.Tests.PlayMode)
 ```
+
+## Movimento
+
+O personagem é um side-scroller com corrida, pulo e dash. A lógica fica em `PlatformerMotor` (C# puro, testável) e o componente `PlatformerMovement2D` a liga ao `Rigidbody2D` cinemático e ao Input System.
+
+| Ação | Teclado | Controle |
+|---|---|---|
+| Andar | A/D ou ←/→ | Analógico esquerdo / D-pad |
+| Pular (segure para pular mais alto) | Espaço | A / Cruz |
+| Dash | Shift esquerdo | RT / R2 |
+
+Os parâmetros (velocidade, altura e duração do pulo, coyote time, buffer de pulo, pulos extras, distância e recarga do dash) ficam em `MovementSettings`, dentro de cada `AddictionDefinition`. Assim, cada vício pode ter um movimento diferente sem mudar código.
 
 Cada pasta de código tem uma Assembly Definition. As dependências seguem uma direção só: `Gameplay → Content → Core`. Nada depende de `Gameplay`.
 
