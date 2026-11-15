@@ -28,12 +28,18 @@ Cena de testes: `Assets/_Project/Scenes/Sandbox.unity`.
 
 ```
 Assets/_Project/
-├── Core/                 # Bootstrap e serviços comuns
-├── Gameplay/
-│   └── Movement/         # Controlador 2D comum a todos os personagens
-├── Content/              # ScriptableObjects (vícios, habilidades, itens)
-└── Scenes/
+├── Core/                 # Bootstrap e serviços comuns (Addicted.Core)
+├── Gameplay/             # Addicted.Gameplay
+│   └── Movement/         # Controlador 2D comum a todos os personagens (a criar)
+├── Content/              # ScriptableObjects: vícios, habilidades, itens (Addicted.Content)
+├── Scenes/               # Sandbox.unity e cenas do jogo
+├── Settings/             # URP (2D Renderer), Volume Profile, Input Actions
+└── Tests/EditMode/       # Testes NUnit (Addicted.Tests.EditMode)
 ```
+
+Cada pasta de código tem uma Assembly Definition. As dependências seguem uma direção só: `Gameplay → Content → Core`. Nada depende de `Gameplay`.
+
+Para rodar os testes: **Window → General → Test Runner → EditMode → Run All**.
 
 Tudo que é do jogo fica em `Assets/_Project/`. Pacotes e assets de terceiros ficam fora dessa pasta.
 

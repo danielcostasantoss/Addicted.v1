@@ -1,0 +1,6 @@
+{
+    "name": "Addicted.Core",
+    "rootNamespace": "Addicted.Core",
+    "references": [],
+    "autoReferenced": true
+}
