@@ -22,7 +22,7 @@ git clone https://github.com/Jogos-Absurdos/Addicted.git
 
 Depois: Unity Hub → **Add** → selecione a pasta clonada → abra. A primeira abertura demora, porque a Unity recria a pasta `Library/`.
 
-Cena de testes: `Assets/_Project/Scenes/Sandbox.unity`.
+Cena principal do protótipo: `Assets/_Project/Scenes/Escritorio.unity`.
 
 ## Estrutura
 
@@ -30,7 +30,9 @@ Cena de testes: `Assets/_Project/Scenes/Sandbox.unity`.
 Assets/_Project/
 ├── Core/                 # Bootstrap e serviços comuns (Addicted.Core)
 ├── Gameplay/             # Addicted.Gameplay
-│   └── Movement/         # Controlador de plataforma 2D comum a todos os personagens
+│   ├── Movement/         # Movimento (briga de rua e plataforma)
+│   ├── Addiction/        # Ciclo Rotina → Pico → Crash → Limite cardíaco
+│   ├── Player/ Combat/ Enemies/ Room/ UI/
 ├── Content/              # ScriptableObjects: vícios, habilidades, itens (Addicted.Content)
 ├── Art/Placeholder/      # Sprites provisórios para protótipo
 ├── Scenes/               # Sandbox.unity e cenas do jogo
@@ -40,9 +42,25 @@ Assets/_Project/
     └── PlayMode/         # Testes com física 2D real (Addicted.Tests.PlayMode)
 ```
 
-## Movimento
+## Sala de protótipo: Escritório
 
-O personagem é um side-scroller com corrida, pulo e dash. A lógica fica em `PlatformerMotor` (C# puro, testável) e o componente `PlatformerMovement2D` a liga ao `Rigidbody2D` cinemático e ao Input System.
+Cena: `Assets/_Project/Scenes/Escritorio.unity`. É uma sala de combate em vista lateral com profundidade (estilo briga de rua), com arte provisória.
+
+| Ação | Teclado / mouse | Controle |
+|---|---|---|
+| Andar (dois eixos) | WASD ou setas | Analógico esquerdo |
+| Dash | Shift esquerdo | RT / R2 |
+| Atacar | Clique esquerdo ou Enter | X / Quadrado |
+
+- **Zona de dose** (cristal no chão): pisar nela leva ao **Pico** (mais rápido). O Pico acaba em **Crash** (mais lento). Três doses seguidas estouram o pulso e levam ao **Limite cardíaco**. O sprite do personagem muda em cada estado.
+- **Inimigos**: o perseguidor (triângulo) corre até você; o atirador (losango) mantém distância e atira.
+- **Ondas**: a sala tem duas. Ao limpar a segunda, a saída muda de magenta para verde.
+
+As regras e os números do ciclo do vício são provisórios e ficam em `HighSettings`. O HUD é de depuração (`DebugHud`). O jogador ainda não perde vida.
+
+## Movimento de plataforma (cena Sandbox)
+
+A cena `Sandbox.unity` mantém um controlador alternativo, de plataforma com pulo. O personagem é um side-scroller com corrida, pulo e dash. A lógica fica em `PlatformerMotor` (C# puro, testável) e o componente `PlatformerMovement2D` a liga ao `Rigidbody2D` cinemático e ao Input System.
 
 | Ação | Teclado | Controle |
 |---|---|---|
