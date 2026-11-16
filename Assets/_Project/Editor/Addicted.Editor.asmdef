@@ -1,0 +1,7 @@
+{
+    "name": "Addicted.Editor",
+    "rootNamespace": "Addicted.Editor",
+    "references": [],
+    "includePlatforms": ["Editor"],
+    "autoReferenced": false
+}

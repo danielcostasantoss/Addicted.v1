@@ -10,14 +10,14 @@ Roguelike de ação 2D feito na Unity. Protótipo com três personagens: Maconha
 |---|---|
 | Unity | **6.3 LTS** — a versão exata está em `ProjectSettings/ProjectVersion.txt`; instale a mesma pelo Unity Hub |
 | Módulo Unity | Windows Build Support (IL2CPP) |
-| IDE | Visual Studio com o workload "Desenvolvimento de jogos com Unity" |
+| IDE | Visual Studio com os workloads "Desenvolvimento de jogos com Unity" e "Desenvolvimento para desktop com C++" (o C++ é exigido pelo IL2CPP no build) |
 | Git | Git + Git LFS |
 
 ## Como abrir o projeto
 
 ```bash
 git lfs install          # uma vez por máquina
-git clone https://github.com/Jogos-Absurdos/Addicted.git
+git clone https://github.com/danielcostasantoss/Addicted.v1.git
 ```
 
 Depois: Unity Hub → **Add** → selecione a pasta clonada → abra. A primeira abertura demora, porque a Unity recria a pasta `Library/`.
@@ -75,6 +75,22 @@ Cada pasta de código tem uma Assembly Definition. As dependências seguem uma d
 Para rodar os testes: **Window → General → Test Runner → EditMode → Run All**.
 
 Tudo que é do jogo fica em `Assets/_Project/`. Pacotes e assets de terceiros ficam fora dessa pasta.
+
+## Build
+
+Versão atual: **0.1.0** (veja o [CHANGELOG](CHANGELOG.md)). O build é Windows x64 com IL2CPP, em janela 1280×720, e começa na cena Escritório.
+
+**Pelo editor:** menu **Addicted → Build → Windows (x64)**. O executável sai em `Builds/Windows/Addicted.exe`, e a pasta abre sozinha ao terminar.
+
+**Pela linha de comando** (com o editor fechado):
+
+```bash
+"C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Unity.exe" -batchmode -quit -projectPath . -executeMethod Addicted.Editor.Build.BuildScript.BuildWindows -buildVersion 0.1.0 -logFile build.log
+```
+
+**Pelo GitHub Actions:** o workflow `.github/workflows/build.yml` roda os testes e o build ao criar uma tag `v*` ou manualmente em **Actions → Build → Run workflow**. O executável fica nos *Artifacts* da execução. Antes da primeira execução, cadastre os secrets `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` (detalhes no topo do arquivo).
+
+A pasta `Builds/` não vai para o Git.
 
 ## Regras de trabalho
 
