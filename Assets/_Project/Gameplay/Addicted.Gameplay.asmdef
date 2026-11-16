@@ -1,0 +1,6 @@
+{
+    "name": "Addicted.Gameplay",
+    "rootNamespace": "Addicted.Gameplay",
+    "references": ["Addicted.Core", "Addicted.Content", "Unity.InputSystem"],
+    "autoReferenced": true
+}
